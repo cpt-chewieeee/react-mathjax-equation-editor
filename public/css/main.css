@@ -1,5 +1,6 @@
 .cal-main {}
-.cal-main .cal-input {border: 2px solid black; height: 100px; padding: 10px; background-color: white;}
+.cal-main .input-container {border: 2px solid black; background-color: white;}
+.cal-main .cal-input {height: 100px; padding: 10px;}
 
 .cal-pads {/*height: 300px;*/ border: 1px solid black;}
 .cal-pads .equations-pad, .cal-pads .numbers-pad, .cal-pads .actions-pad{padding-right: 0px; padding-left: 0px;}
@@ -9,3 +10,4 @@
 .equations-pad .equations {}
 .equations-pad .equations .btn-lg, .numbers-pad .numbers .btn-lg{width: 50px; height: 50px;}
 .equations .mjx-chtml {font-size: 80% !important;}
+.katex .base {font-size: 200% !important;}

@@ -4,7 +4,7 @@ var Panel = require('react-bootstrap/lib/Panel');
 module.exports = React.createClass({
 	render: function(){
 		return(
-			<div className="numbers-pad col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div className="numbers-pad col-xs-4 col-sm-4 col-md-4 col-lg-4">
 				<Panel>
 					<div className="row">
 						<div className="numbers col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
