@@ -4,7 +4,7 @@ var Panel = require('react-bootstrap/lib/Panel');
 module.exports = React.createClass({
 	render: function(){
 		return(
-			<div className="equations-pad col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			<div className="equations-pad col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<Panel>
 					<div className="row">
 						<div className="equations col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
@@ -13,7 +13,6 @@ module.exports = React.createClass({
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'subtract')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#45;</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'multiple')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#215;</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'divide')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x00F7;</mo></math></button>
-								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'a')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>a</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'sin')}>
 									<math xmlns="http://www.w3.org/1998/Math/MathML" data-semantic-type="appl" data-semantic-role="prefix function" data-semantic-id="4" data-semantic-children="0,2" data-semantic-content="3,0" data-semantic-complexity="7">
 									  <mi data-semantic-type="function" data-semantic-role="prefix function" data-semantic-font="normal" data-semantic-id="0" data-semantic-parent="4" data-semantic-operator="appl" data-semantic-complexity="2">sin</mi>
@@ -33,7 +32,6 @@ module.exports = React.createClass({
 									  </mroot>
 									</math>
 								</button>
-								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'b')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>b</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'cos')}>
 									<math xmlns="http://www.w3.org/1998/Math/MathML" data-semantic-type="appl" data-semantic-role="prefix function" data-semantic-id="4" data-semantic-children="0,2" data-semantic-content="3,0" data-semantic-complexity="7">
 									  <mi data-semantic-type="function" data-semantic-role="prefix function" data-semantic-font="normal" data-semantic-id="0" data-semantic-parent="4" data-semantic-operator="appl" data-semantic-complexity="2">cos</mi>
@@ -46,7 +44,6 @@ module.exports = React.createClass({
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'gt')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x003E;</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'lte')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2264;</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'gte')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2265;</mo></math></button>
-								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'x')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>x</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'tan')}>
 									<math xmlns="http://www.w3.org/1998/Math/MathML" data-semantic-type="appl" data-semantic-role="prefix function" data-semantic-id="4" data-semantic-children="0,2" data-semantic-content="3,0" data-semantic-complexity="7">
 									  <mi data-semantic-type="function" data-semantic-role="prefix function" data-semantic-font="normal" data-semantic-id="0" data-semantic-parent="4" data-semantic-operator="appl" data-semantic-complexity="2">tan</mi>
@@ -67,7 +64,6 @@ module.exports = React.createClass({
 									  </msubsup>
 									</math>
 								</button>
-								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'y')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>y</mo></math></button>
 								<button type="button" className="btn btn-default btn-lg" onClick={this.onEquationClick.bind(this, 'equal')}><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#61;</mo></math></button>
 							</div>
 						</div>

@@ -9,7 +9,7 @@ module.exports = React.createClass({
 			{name: 'b', clickAction: this.handleClick.bind(this, 1), changeAction: this.handleChange.bind(this, 1)}
 		];
 		for(var i = 0; i < this.props.limits; i++){
-			inputs.push(<li key={i}><label>{variables[i].name} = <input type="number" onClick={variables[i].clickAction} onChange={variables[i].changeAction} value={this.state.values[i]}/> </label></li>)
+			inputs.push(<li key={i}><label>{variables[i].name} = <input type="text" onClick={variables[i].clickAction} onChange={variables[i].changeAction} value={this.state.values[i]}/> </label></li>)
 		}		
 		return (
 			<div className="form-inline">

@@ -27231,11 +27231,14 @@
 			this.setState({ selectedIndex: id });
 		},
 		inputsOnChange: function (id, value) {
-			var info = this.state.showInputBoxes;
-			info.values[id] = value;
-			this.setState({
-				showInputBoxes: info
-			});
+			var tmp = value[value.length - 1];
+			if (!isNaN(tmp) || tmp === 'x' || tmp === 'y' || tmp === 'a' || tmp === 'b') {
+				var info = this.state.showInputBoxes;
+				info.values[id] = value;
+				this.setState({
+					showInputBoxes: info
+				});
+			}
 		},
 		inputsSubmit: function () {
 			var info = this.state.showInputBoxes;
@@ -27324,7 +27327,7 @@
 						null,
 						variables[i].name,
 						' = ',
-						React.createElement('input', { type: 'number', onClick: variables[i].clickAction, onChange: variables[i].changeAction, value: this.state.values[i] }),
+						React.createElement('input', { type: 'text', onClick: variables[i].clickAction, onChange: variables[i].changeAction, value: this.state.values[i] }),
 						' '
 					)
 				));
@@ -27414,7 +27417,7 @@
 		render: function () {
 			return React.createElement(
 				'div',
-				{ className: 'equations-pad col-xs-8 col-sm-8 col-md-8 col-lg-8' },
+				{ className: 'equations-pad col-xs-6 col-sm-6 col-md-6 col-lg-6' },
 				React.createElement(
 					Panel,
 					null,
@@ -27476,19 +27479,6 @@
 											'mo',
 											null,
 											'\xF7'
-										)
-									)
-								),
-								React.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onEquationClick.bind(this, 'a') },
-									React.createElement(
-										'math',
-										{ xmlns: 'http://www.w3.org/1998/Math/MathML' },
-										React.createElement(
-											'mo',
-											null,
-											'a'
 										)
 									)
 								),
@@ -27599,19 +27589,6 @@
 								),
 								React.createElement(
 									'button',
-									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onEquationClick.bind(this, 'b') },
-									React.createElement(
-										'math',
-										{ xmlns: 'http://www.w3.org/1998/Math/MathML' },
-										React.createElement(
-											'mo',
-											null,
-											'b'
-										)
-									)
-								),
-								React.createElement(
-									'button',
 									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onEquationClick.bind(this, 'cos') },
 									React.createElement(
 										'math',
@@ -27681,19 +27658,6 @@
 											'mo',
 											null,
 											'\u2265'
-										)
-									)
-								),
-								React.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onEquationClick.bind(this, 'x') },
-									React.createElement(
-										'math',
-										{ xmlns: 'http://www.w3.org/1998/Math/MathML' },
-										React.createElement(
-											'mo',
-											null,
-											'x'
 										)
 									)
 								),
@@ -27782,19 +27746,6 @@
 												{ 'data-semantic-type': 'identifier', 'data-semantic-role': 'latinletter', 'data-semantic-font': 'italic', 'data-semantic-id': '2', 'data-semantic-parent': '3', 'data-semantic-complexity': '1' },
 												'a'
 											)
-										)
-									)
-								),
-								React.createElement(
-									'button',
-									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onEquationClick.bind(this, 'y') },
-									React.createElement(
-										'math',
-										{ xmlns: 'http://www.w3.org/1998/Math/MathML' },
-										React.createElement(
-											'mo',
-											null,
-											'y'
 										)
 									)
 								),
@@ -31144,7 +31095,7 @@
 		render: function () {
 			return React.createElement(
 				'div',
-				{ className: 'numbers-pad col-xs-4 col-sm-4 col-md-4 col-lg-4' },
+				{ className: 'numbers-pad col-xs-6 col-sm-6 col-md-6 col-lg-6' },
 				React.createElement(
 					Panel,
 					null,
@@ -31171,6 +31122,11 @@
 									'button',
 									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 3) },
 									'3'
+								),
+								React.createElement(
+									'button',
+									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 'a') },
+									'a'
 								)
 							),
 							React.createElement(
@@ -31190,6 +31146,11 @@
 									'button',
 									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 6) },
 									'6'
+								),
+								React.createElement(
+									'button',
+									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 'b') },
+									'b'
 								)
 							),
 							React.createElement(
@@ -31209,6 +31170,11 @@
 									'button',
 									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 9) },
 									'9'
+								),
+								React.createElement(
+									'button',
+									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 'x') },
+									'x'
 								)
 							),
 							React.createElement(
@@ -31228,6 +31194,11 @@
 									'button',
 									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, '?') },
 									'?'
+								),
+								React.createElement(
+									'button',
+									{ type: 'button', className: 'btn btn-default btn-lg', onClick: this.onNumClick.bind(this, 'y') },
+									'y'
 								)
 							)
 						)

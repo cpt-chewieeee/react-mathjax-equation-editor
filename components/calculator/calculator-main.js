@@ -85,11 +85,14 @@ module.exports = React.createClass({
 		this.setState({selectedIndex: id});
 	},
 	inputsOnChange: function(id, value){
-		var info = this.state.showInputBoxes;
-		info.values[id] = value;
-		this.setState({
-			showInputBoxes: info
-		});
+		var tmp = value[value.length - 1];
+		if(!isNaN(tmp) || tmp === 'x' || tmp === 'y' || tmp === 'a' || tmp === 'b'){
+			var info = this.state.showInputBoxes;
+			info.values[id] = value;
+			this.setState({
+				showInputBoxes: info
+			});
+		}
 	},
 	inputsSubmit: function(){
 		var info = this.state.showInputBoxes;
