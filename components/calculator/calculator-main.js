@@ -64,8 +64,8 @@ module.exports = React.createClass({
 		}
 	},
 	equationHandler: function(equation, type){
+		console.log('equationHandler', equation);
 		if(!this.state.showInputBoxes.status || type == 'special'){
-
 			var stack = this.state.actionStack;
 			stack.push(equation);
 			this.setState({

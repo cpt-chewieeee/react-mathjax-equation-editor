@@ -27210,8 +27210,8 @@
 			}
 		},
 		equationHandler: function (equation, type) {
+			console.log('equationHandler', equation);
 			if (!this.state.showInputBoxes.status || type == 'special') {
-
 				var stack = this.state.actionStack;
 				stack.push(equation);
 				this.setState({
@@ -27856,25 +27856,25 @@
 				case 'def-integrals':
 					// this.props.onEquationClick('\\int_n^y');
 					this.props.onSpecialClick(type, 2, function (a, b) {
-						self.props.onEquationClick('\\int_' + a + '^' + b, 'special');
+						self.props.onEquationClick('\\int_{' + a + '}^{' + b + '}', 'special');
 					});
 					break;
 				case 'sin':
 					// this.props.onEquationClick('\\sin x');
 					this.props.onSpecialClick(type, 1, function (a, b) {
-						self.props.onEquationClick('\\sin ' + a, 'special');
+						self.props.onEquationClick('\\sin {' + a + '}', 'special');
 					});
 					break;
 				case 'cos':
 					// this.props.onEquationClick('\\cos x');
 					this.props.onSpecialClick(type, 1, function (a, b) {
-						self.props.onEquationClick('\\cos ' + a, 'special');
+						self.props.onEquationClick('\\cos {' + a + '}', 'special');
 					});
 					break;
 				case 'tan':
 					// this.props.onEquationClick('\\tan x');
 					this.props.onSpecialClick(type, 1, function (a, b) {
-						self.props.onEquationClick('\\tan ' + a, 'special');
+						self.props.onEquationClick('\\tan {' + a + '}', 'special');
 					});
 					break;
 				case 'fraction':
@@ -27884,7 +27884,7 @@
 					break;
 				case 'exponentiation':
 					this.props.onSpecialClick(type, 2, function (a, b) {
-						self.props.onEquationClick(a + '^' + b, 'special');
+						self.props.onEquationClick(a + '^{' + b + '}', 'special');
 					});
 
 					break;
