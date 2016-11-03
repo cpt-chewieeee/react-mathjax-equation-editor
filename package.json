@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "expand-range": "^1.8.2",
+    "mathjax": "^2.7.0",
     "react": "^15.3.1",
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.1",

@@ -8,12 +8,11 @@ module.exports = React.createClass({
 		return (
 			<div className="container cal-pads">
 				<div className="row">
-					<ActionsPad />
-
+					<ActionsPad onActionClick={this.props.onActionClick}/>
 				</div>
 				<div className="row">
-					<EquationsPad />
-					<NumbersPad />
+					<EquationsPad onEquationClick={this.props.onEquationClick}/>
+					<NumbersPad onNumClick={this.props.onNumClick}/>
 				</div>
 			</div>
 		)
