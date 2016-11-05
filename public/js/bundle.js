@@ -27165,7 +27165,7 @@
 		},
 		getInitialState: function () {
 			return {
-				// actionStack: ['|'],
+				actionStack: [],
 				dangerouslyString: '|',
 				showInputBoxes: { status: false, limit: 0, values: ['', ''] },
 				selectedIndex: null,
@@ -27174,16 +27174,10 @@
 			};
 		},
 		insertBack: function (string, index) {
-			// console.log('string', "'" + string + "'", index);
-			// console.log(string, index);
 			var set = string.split(' ');
-			// console.log(set);
 			var cursor = set.splice(index, 1);
-			// console.log('set', set);
-			// console.log('cursor', cursor);
 			set.push(cursor.pop());
-			// console.log('->', set);
-			// console.log('================');
+
 			return {
 				set: set.join(' '),
 				index: index + 1
@@ -27191,22 +27185,20 @@
 		},
 		numHandler: function (value) {
 			if (!this.state.showInputBoxes.status) {
-				// var stack = this.state.actionStack;
-				// stack.push(value);
+				var stack = this.state.actionStack;
+				stack.push(value);
 				// console.log('-->', stack);
 				var new_string = this.state.dangerouslyString + ' ' + value;
 				// console.log('->', new_string.split(' '), new_string);
 				var new_value;
+				console.log('cursorIndex', this.state.cursorIndex, this.state.dangerouslyString.split(' '));
 				if (this.state.cursorIndex === this.state.dangerouslyString.split(' ').length - 1) {
 					new_value = this.insertBack(new_string, this.state.cursorIndex);
 				} else {
 					new_value = this.insertMid(this.state.dangerouslyString, value, this.state.cursorIndex);
 				}
-				// console.log(this.state.cursorIndex, this.state.dangerouslyString.split(' ').length - 1);
-
-				// console.log(new_value);
 				this.setState({
-					// actionStack: stack,
+					actionStack: stack,
 					dangerouslyString: new_value.set,
 					cursorIndex: new_value.index
 				});
@@ -27224,10 +27216,50 @@
 			var array = string.split(' | ');
 			var left = array[0];
 			var right = array[1];
+			right = right ? ' | ' + right : '';
 			return {
-				set: left + ' ' + value + ' | ' + right,
+				set: left + ' ' + value + right,
 				index: index + 1
 			};
+		},
+		undoAction: function () {
+			if (this.state.actionStack.length != 0) {
+				var stack = this.state.actionStack;
+				var last = stack.pop();
+				var array = this.state.dangerouslyString.split(' ');
+				var lastIndex = array.indexOf(last.toString());
+				var new_tmp = array.splice(lastIndex, 1);
+				this.setState({
+					actionStack: stack,
+					dangerouslyString: array.join(' '),
+					cursorIndex: this.state.cursorIndex - 1
+				});
+			}
+		},
+		deleteClosesToCursor: function () {
+			if (this.state.dangerouslyString.split(' ').length - 1 === this.state.cursorIndex) {
+				var array = this.state.dangerouslyString.split(' |');
+				var left = array[0].split(' ');
+				left.pop();
+				var index = this.state.cursorIndex - 1 < 0 ? 0 : this.state.cursorIndex - 1;
+				console.log('1:', this.state.cursorIndex, '2:', index);
+				var new_string = index == 0 ? '|' : left.join(' ') + ' |';
+				this.setState({
+					dangerouslyString: new_string,
+					cursorIndex: index
+				});
+			} else if (this.state.cursorIndex > 0) {
+				// console.log(this.state.cursorIndex);
+				// var array = this.state.dangerouslyString.split(' | ');
+				// var left = array[0].split(' ');
+				// left.pop();
+				// var right = array[1];
+				// console.log(left, '-', right);
+				// this.setState({
+				// 	dangerouslyString: left.join(' ') + ' | ' + right,
+				// 	cursorIndex: this.state.cursorIndex - 1
+				// });
+			}
 		},
 		actionHandler: function (type) {
 			switch (type) {
@@ -27235,14 +27267,10 @@
 					this.setState({ dangerouslyString: '|', cursorIndex: 0 });
 					break;
 				case 'delete':
+					this.deleteClosesToCursor();
+					break;
 				case 'undo':
-					var new_strings = this.state.dangerouslyString.split(' ');
-					var last = new_strings.pop();
-					if (last === '|') {
-						new_strings.pop();
-						new_strings.push(last);
-					}
-					this.setState({ dangerouslyString: new_strings.join(' '), cursorIndex: this.state.cursorIndex - 1 });
+					this.undoAction();
 					break;
 				case 'nav-left':
 					if (this.state.cursorIndex != 0) {
@@ -27308,11 +27336,11 @@
 			};
 		},
 		equationHandler: function (equation, type) {
-			console.log('equationHandler', equation);
+			// console.log('equationHandler', equation);
 			if (!this.state.showInputBoxes.status || type == 'special') {
-				// var stack = this.state.actionStack;
+				var stack = this.state.actionStack;
 				// console.log('push', this.state.dangerouslyString + ' ' + equation);
-				// stack.push(equation);
+				stack.push(equation);
 				var new_value;
 				var new_string = this.state.dangerouslyString + ' ' + equation;
 				if (this.state.cursorIndex === this.state.dangerouslyString.split(' ').length - 1) {
@@ -27321,6 +27349,7 @@
 					new_value = this.insertMid(this.state.dangerouslyString, equation, this.state.cursorIndex);
 				}
 				this.setState({
+					actionStack: stack,
 					dangerouslyString: new_value.set,
 					cursorIndex: new_value.index
 				});
