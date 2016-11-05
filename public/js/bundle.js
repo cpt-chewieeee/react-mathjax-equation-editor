@@ -27173,7 +27173,7 @@
 				cursorIndex: 0
 			};
 		},
-		moveCursor: function (string, index) {
+		insertBack: function (string, index) {
 			// console.log('string', "'" + string + "'", index);
 			// console.log(string, index);
 			var set = string.split(' ');
@@ -27196,7 +27196,14 @@
 				// console.log('-->', stack);
 				var new_string = this.state.dangerouslyString + ' ' + value;
 				// console.log('->', new_string.split(' '), new_string);
-				var new_value = this.moveCursor(new_string, this.state.cursorIndex);
+				var new_value;
+				if (this.state.cursorIndex === this.state.dangerouslyString.split(' ').length - 1) {
+					new_value = this.insertBack(new_string, this.state.cursorIndex);
+				} else {
+					new_value = this.insertMid(this.state.dangerouslyString, value, this.state.cursorIndex);
+				}
+				// console.log(this.state.cursorIndex, this.state.dangerouslyString.split(' ').length - 1);
+
 				// console.log(new_value);
 				this.setState({
 					// actionStack: stack,
@@ -27212,6 +27219,15 @@
 					});
 				}
 			}
+		},
+		insertMid: function (string, value, index) {
+			var array = string.split(' | ');
+			var left = array[0];
+			var right = array[1];
+			return {
+				set: left + ' ' + value + ' | ' + right,
+				index: index + 1
+			};
 		},
 		actionHandler: function (type) {
 			switch (type) {
@@ -27297,8 +27313,13 @@
 				// var stack = this.state.actionStack;
 				// console.log('push', this.state.dangerouslyString + ' ' + equation);
 				// stack.push(equation);
+				var new_value;
 				var new_string = this.state.dangerouslyString + ' ' + equation;
-				var new_value = this.moveCursor(new_string, this.state.cursorIndex);
+				if (this.state.cursorIndex === this.state.dangerouslyString.split(' ').length - 1) {
+					new_value = this.insertBack(new_string, this.state.cursorIndex);
+				} else {
+					new_value = this.insertMid(this.state.dangerouslyString, equation, this.state.cursorIndex);
+				}
 				this.setState({
 					dangerouslyString: new_value.set,
 					cursorIndex: new_value.index
