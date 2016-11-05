@@ -118,19 +118,19 @@ module.exports = React.createClass({
 			case 'sin':
 				// this.props.onEquationClick('\\sin x');
 				this.props.onSpecialClick(type, 1, function(a, b){
-					self.props.onEquationClick('\\sin {' + a + '}', 'special');
+					self.props.onEquationClick('\\sin{' + a + '}', 'special');
 				});
 				break;
 			case 'cos':
 				// this.props.onEquationClick('\\cos x');
 				this.props.onSpecialClick(type, 1, function(a, b){
-					self.props.onEquationClick('\\cos {' + a + '}', 'special');
+					self.props.onEquationClick('\\cos{' + a + '}', 'special');
 				});
 				break;
 			case 'tan':
 				// this.props.onEquationClick('\\tan x');
 				this.props.onSpecialClick(type, 1, function(a, b){
-					self.props.onEquationClick('\\tan {' + a + '}', 'special');
+					self.props.onEquationClick('\\tan{' + a + '}', 'special');
 				});
 				break;
 			case 'fraction':
