@@ -27242,23 +27242,24 @@
 				var left = array[0].split(' ');
 				left.pop();
 				var index = this.state.cursorIndex - 1 < 0 ? 0 : this.state.cursorIndex - 1;
-				console.log('1:', this.state.cursorIndex, '2:', index);
+				// console.log('1:', this.state.cursorIndex, '2:', index);
 				var new_string = index == 0 ? '|' : left.join(' ') + ' |';
 				this.setState({
 					dangerouslyString: new_string,
 					cursorIndex: index
 				});
 			} else if (this.state.cursorIndex > 0) {
-				// console.log(this.state.cursorIndex);
-				// var array = this.state.dangerouslyString.split(' | ');
-				// var left = array[0].split(' ');
-				// left.pop();
-				// var right = array[1];
-				// console.log(left, '-', right);
-				// this.setState({
-				// 	dangerouslyString: left.join(' ') + ' | ' + right,
-				// 	cursorIndex: this.state.cursorIndex - 1
-				// });
+				// console.log('|', this.state.cursorIndex);
+				var array = this.state.dangerouslyString.split(' ');
+				var cursorIndex = array.indexOf('|');
+				// console.log('before', array[cursorIndex - 1]);
+				var tmp = array.splice(cursorIndex - 1, 1);
+				// console.log('1:', tmp);
+				// console.log('2:', array);
+				this.setState({
+					dangerouslyString: array.join(' '),
+					cursorIndex: this.state.cursorIndex - 1
+				});
 			}
 		},
 		actionHandler: function (type) {
