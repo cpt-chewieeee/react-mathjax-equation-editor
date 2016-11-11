@@ -3,7 +3,7 @@
 NOTE: this react component does not function as a calculator.
 
 
-![Demo](https://github.com/cpt-chewieeee/react-mathjax-equation-editor/tree/master/public/equation_editor.gif)
+![Demo](https://raw.githubusercontent.com/cpt-chewieeee/react-mathjax-equation-editor/master/public/equation_editor.gif)
 
 ## requirements
 
